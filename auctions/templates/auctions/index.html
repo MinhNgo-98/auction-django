@@ -1,0 +1,44 @@
+{% extends "auctions/layout.html" %} {% block body %} {% load static %}
+<h1>{{ title }}</h1>
+{% if user.is_authenticated %}
+    <div>
+        <a href="{% url 'add_listing' %}"><input type="button" value="+ Add listing"></input>
+        </a>
+    </div> 
+{% endif %} 
+{% if listings %}
+    <ul class="auction-card-list">
+        {% for listing in listings %}
+            <li class="listing-card-item">
+                {% if user.is_authenticated %}
+                    <a class="listing-card" href="{% url 'listing' listing.id %}">
+                        <div class="listing-card-image">
+                            <img src="{{listing.image_url}}" alt="{{listing.title}}">
+                        </div>
+                        <div class="listing-card-content">
+                            <h2>{{ listing.title }}</h2>
+                            <p>{{ listing.description }}</p>
+                            <h1>{{ listing.price }}$</h1>
+                        </div>
+                    </a>
+                {% else %}
+                    <a class="listing-card" href="{% url 'login' %}">
+                        <div class="listing-card-image">
+                            <img src="{{listing.image_url}}" alt="{{listing.title}}">
+                        </div>
+                        <div class="listing-card-content">
+                            <h2>{{ listing.title }}</h2>
+                            <p>{{ listing.description }}</p>
+                            <h1>{{ listing.price }}$</h1>
+                        </div>
+                    </a>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <div class="no-listings">
+        <img src="{% static 'auctions/img/web_shopping.svg' %}" width="500px" alt="No active listings.">
+    </div>
+{% endif %} 
+{% endblock %}

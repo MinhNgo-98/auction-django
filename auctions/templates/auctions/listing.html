@@ -1,0 +1,75 @@
+{% extends "auctions/layout.html" %} {% block title %} Listing {% endblock %} {% block body %}{% load static %} {% if user.get_username == winner and listing.isClosed %}
+<div class="winner">
+    <h3>Congratulations. You have won this auction.</h3>
+</div>
+{% endif %}
+<div class="listing">
+    <div class="listing-image">
+        <img src="{{ listing.image_url }}" alt="" />
+    </div>
+    <div class="listing-info">
+        <h1>{{ listing.title }}</h1>
+        <p>{{ listing.description }}</p>
+        <div>
+            <p>Owner: {{ listing.owner }}</p>
+            <h1>{{ listing.price }}$</h1>
+        </div>
+
+    </div>
+
+</div>
+{% if user.is_authenticated and not listing.isClosed %}
+<form action="{% url 'submit_bid' listing.id %}" method="POST">
+    {% csrf_token %} {{ submitBidForm|safe }} {% if bid.validBid == False %}
+    <p class="error">Bid must be greater than the current price.</p>
+    {% endif %}
+    <input type="submit" value="Submit bid" />
+</form>
+<div class="user-options">
+    {% if not listing.addedToWatchlist %}
+    <a href="{% url 'add_to_watchlist' listing.id %}">
+        <input id="user-option-button" type="button" value="Add to watchlist" />
+    </a>
+    {% else %}
+    <a href="{% url 'remove_from_watchlist' listing.id %}">
+        <input id="user-option-button" type="button" value="Remove from watchlist" />
+    </a>
+    {% endif %} {% if user.get_username == owner %}
+    <a href="{% url 'close_bid' listing.id %}">
+        <input id="user-option-button" type="button" value="Close auction" />
+    </a>
+    {% endif %}
+</div>
+{% elif listing.isClosed %}
+<div class="closed">
+    <h1>
+        Closed
+    </h1>
+</div>
+{% endif %}
+<div class="hr-droid">
+    <div class="hr-line"></div>
+    <div><i class="fas fa-comments-dollar"></i></div>
+    <div class="hr-line"></div>
+</div>
+<div class="comment-section">
+    <h1>Comments</h1>
+    <div>
+        {% for comment in comments %}
+        <div class="comment-card">
+            <h4>{{ comment.title }}</h4>
+            <p>{{ comment.description }}</p>
+            <p>from: {{ comment.user }}</p>
+            <p>{{ comment.date }}</p>
+        </div>
+        {% endfor %}
+    </div>
+    {% if user.is_authenticated %}
+    <h3>Leave a comment</h3>
+    <form action="{% url 'add_comment' listing.id %}" method="POST">
+        {% csrf_token %} {{ addCommentForm|safe }}
+        <input type="submit" value="Add comment" />
+    </form>
+    {% endif %}
+</div>
+{% endblock %}

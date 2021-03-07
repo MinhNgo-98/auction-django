@@ -1,0 +1,21 @@
+{% extends "auctions/layout.html" %} {% block body %}
+<h2>Watchlist</h2>
+
+<ul class="auction-card-list">
+    {% for listing in watchlist %}
+    <li class="listing-card-item">
+        <div class="listing-card" onclick="location.href='listing/{{listing.id}}'">
+            <a id="remove-from-watchlist" href="{% url 'remove_from_watchlist' listing.id %}"><i class="fas fa-times"></i></a>
+            <div class="listing-card-image">
+                <img src="{{listing.image_url}}" alt="{{listing.title}}">
+            </div>
+            <div class="listing-card-content">
+                <h2>{{ listing.title }}</h2>
+                <p>{{ listing.description }}</p>
+                <h1>{{ listing.price }}$</h1>
+            </div>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
