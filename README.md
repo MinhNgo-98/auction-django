@@ -1,4 +1,4 @@
-# Auktionswebsite mit Django
+# Auktionsseite
 
 ## Beschreibung
 
