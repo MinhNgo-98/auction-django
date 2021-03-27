@@ -2,7 +2,7 @@
 
 ## Beschreibung
 Dieses Projekt wurde im Rahmen meines Online-Kurses mit Zertifikat **[CS50’s Web Programming with Python and JavaScript](https://www.edx.org/course/cs50s-web-programming-with-python-and-javascript)** erstellt.
-Es handelt sich um eine eBay-ähnliche Auktionsseite, welche es Nutzern erlaubt, Autkionen zu erstellen, Produkte auf eine Beobachtungsliste zu setzen und Gebote auf Produkte zu setzen und diese zu kommentieren.
+Es handelt sich um eine eBay-ähnliche Auktionsseite, welche es Nutzern erlaubt, Auktionen zu erstellen, Produkte auf eine Beobachtungsliste zu setzen und Gebote auf Produkte zu setzen und diese zu kommentieren.
 
 ## Link zur Website
 https://auction-django.herokuapp.com/
