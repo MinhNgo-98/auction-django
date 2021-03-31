@@ -23,4 +23,4 @@ Es gibt 4 verschiedene Models:
 - Comment: für Speicherung der Kommentare
 
 ## Vorführung
-[![Project Showcase](https://i.ibb.co/vvvT7B1/commerce.png)](https://youtu.be/Od2tL7d0JGs)
+[![Project Showcase](https://i.ibb.co/vvvT7B1/commerce.png)](https://youtu.be/IX6ByIAgqCo)
